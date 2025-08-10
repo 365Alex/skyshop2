@@ -24,7 +24,6 @@ public class App {
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
 
-
         productBasket.addProduct(cheese);
         productBasket.addProduct(productTwo);
         productBasket.addProduct(productTree);

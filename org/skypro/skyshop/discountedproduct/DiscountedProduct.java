@@ -17,6 +17,7 @@ public class DiscountedProduct extends Product {
             throw new IllegalArgumentException("процент должен быть от 0 до 100");
         }
 
+
     }
 
 
