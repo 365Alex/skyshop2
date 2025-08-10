@@ -10,7 +10,6 @@ public class SimpleProduct extends Product {
         this.price = price;
         if (price <= 0){
             throw new IllegalArgumentException("неверная цена продукта");
-
         }
     }
 

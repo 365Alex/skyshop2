@@ -13,6 +13,7 @@ public class Article implements Searchable {
     }
 
 
+
     public String getTitle(){
         return title;
     }

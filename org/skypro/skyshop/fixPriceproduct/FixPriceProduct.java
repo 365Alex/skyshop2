@@ -19,7 +19,6 @@ public class FixPriceProduct extends Product {
         return "Продукт с фиксированной ценой: " + this.getNameProduct() + " фиксированная цена: " + this.fixPrice + " руб.";
     }
 
-
     @Override
     public boolean isSpecial(){
         return true;

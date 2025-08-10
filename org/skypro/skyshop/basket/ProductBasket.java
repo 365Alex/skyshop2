@@ -14,6 +14,7 @@ public class ProductBasket {
         size = 0;
     }
 
+
     public void addProduct(Product product) {
 
         if (size < products.length) {
