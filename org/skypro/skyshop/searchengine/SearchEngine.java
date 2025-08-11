@@ -2,49 +2,56 @@ package org.skypro.skyshop.searchengine;
 
 import org.skypro.skyshop.searchable.Searchable;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class SearchEngine {
-    private final Searchable[] searchableItems;
+    private final List<SearchEngine> searchableItems;
     private int count = 0;
 
 
-    public SearchEngine(int size) {
-        searchableItems = new Searchable[size];
+    public SearchEngine() {
+        searchableItems = new LinkedList<>();
     }
 
 
     public void add(Searchable searchable) {
-        if (count < searchableItems.length) {
-            searchableItems[count++] = searchable;
+        if (count < searchableItems.size()) {
+            count++;
+            searchableItems.set(count, (SearchEngine) searchable);
         }
     }
 
-    public Searchable[] search(String term) {
-        Searchable[] results = new Searchable[5];
-        int resultCount = 0;
-
-        for (Searchable item : searchableItems) {
-            if (item != null && item.searchTerm().contains(term)) {
-                if (resultCount < results.length) {
-                    results[resultCount++] = item;
-                } else {
+    public List<Searchable> search(String term) {
+        Iterator<SearchEngine> iterator = searchableItems.iterator();
+        List<Searchable> result = new LinkedList<>();
+        int count = 0;
+        while (iterator.hasNext()){
+            if (iterator.next().searchTerm().contains(term)) {
+                Searchable s = (Searchable) iterator.next();
+                result.add(s);
+                count++;
+                if (count == 5) {
                     break;
                 }
-            }
-
         }
-        return results;
     }
+
     public Searchable bestFoundMatch(String search) throws BestResultNotFound {
         Searchable searchable = null;
         int maxCount = 0;
-        for (Searchable s : searchableItems) {
+        for (SearchEngine s : searchableItems) {
             int count = 0;
             int index = 0;
-            int indexString=s.searchTerm().indexOf(search,index);
-            while (indexString!=-1){
-                count++;
-                index=indexString+search.length();
-                indexString=s.searchTerm().indexOf(search,index);
+            if (s != null) {
+                int indexString = s.searchTerm().indexOf(search, index);
+
+                while (indexString != -1) {
+                    count++;
+                    index = indexString + search.length();
+                    indexString = s.getSearchTerm().indexOf(search, index);
+                }
             }
             if (count > maxCount) {
                 maxCount = count;

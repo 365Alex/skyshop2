@@ -21,7 +21,7 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString(){
-        return "Продукт: " + this.getNameProduct() + " цена: " + this.price + " руб.";
+        return "Продукт: " + this.getNameProduct() + " цена: " + this.price + " руб." + "\n";
     }
 
     public boolean isSpecial(){

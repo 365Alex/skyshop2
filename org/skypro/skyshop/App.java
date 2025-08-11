@@ -3,13 +3,14 @@ import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.discountedproduct.DiscountedProduct;
 import org.skypro.skyshop.fixPriceproduct.FixPriceProduct;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchengine.BestResultNotFound;
 import org.skypro.skyshop.searchengine.SearchEngine;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.Arrays;
-
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class App {
@@ -17,20 +18,29 @@ public class App {
 
 
         System.out.println("Корзина №1");
-        ProductBasket productBasket = new ProductBasket(5);
+        ProductBasket productBasket = new ProductBasket();
         DiscountedProduct cheese = new DiscountedProduct("сыр", 85, 10);
         FixPriceProduct productTwo = new FixPriceProduct("Печенье");
         SimpleProduct productTree = new SimpleProduct("молоко", 94);
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
+        productBasket.printProductBasket();
 
+        List<Product> productBasketOne = new LinkedList<>();
+        productBasketOne.add(cheese);
+        productBasketOne.add(productFife);
+        productBasketOne.add(productTwo);
+        productBasketOne.add(productFor);
+        productBasketOne.add(productTree);
+        System.out.println(productBasketOne);
+        System.out.println(productBasketOne.get(3));
 
         productBasket.addProduct(cheese);
-        productBasket.addProduct(productTwo);
-        productBasket.addProduct(productTree);
-        productBasket.addProduct(productFor);
         productBasket.addProduct(productFife);
+        productBasket.addProduct(productTree);
         productBasket.printProductBasket();
+        System.out.println(productBasket.deleteNameProduct("молоко"));
+
 
 
         System.out.println();
@@ -43,7 +53,7 @@ public class App {
         System.out.println();
 
         System.out.println("Корзина №2");
-        ProductBasket productBasketOne = new ProductBasket(5);
+        ProductBasket productBasketTwo = new ProductBasket();
         SimpleProduct correct = null;
 
         try {
@@ -66,14 +76,14 @@ public class App {
             DiscountedProduct candies = new DiscountedProduct("чай с бергамотом", 89, 10);
             DiscountedProduct coffee = new DiscountedProduct("кофе", 198, 10);
 
-            productBasketOne.addProduct(tea);
-            productBasketOne.addProduct(candies);
-            productBasketOne.addProduct(coffee);
-            productBasketOne.printProductBasket();
+            productBasketTwo.addProduct(tea);
+            productBasketTwo.addProduct(candies);
+            productBasketTwo.addProduct(coffee);
+            productBasketTwo.printProductBasket();
 
 
 
-            SearchEngine searchEngine = new SearchEngine(5);
+            SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(candies);
         searchEngine.add(tea);
         try {
@@ -89,7 +99,6 @@ public class App {
             searchEngine.add(articleOne);
             searchEngine.add(articleTwo);
 
-            System.out.println(Arrays.toString(searchEngine.search("Новинки")));
 
 
 
