@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SearchEngine {
-    private final List<SearchEngine> searchableItems;
+    private final List<Searchable> searchableItems;
     private int count = 0;
 
 
@@ -19,29 +19,26 @@ public class SearchEngine {
     public void add(Searchable searchable) {
         if (count < searchableItems.size()) {
             count++;
-            searchableItems.set(count, (SearchEngine) searchable);
+            searchableItems.set(count, searchable);
         }
     }
 
     public List<Searchable> search(String term) {
-        Iterator<SearchEngine> iterator = searchableItems.iterator();
+        Iterator<Searchable> iterator = searchableItems.iterator();
         List<Searchable> result = new LinkedList<>();
-        int count = 0;
         while (iterator.hasNext()){
             if (iterator.next().searchTerm().contains(term)) {
                 Searchable s = (Searchable) iterator.next();
                 result.add(s);
                 count++;
-                if (count == 5) {
-                    break;
-                }
+
         }
     }
 
-    public Searchable bestFoundMatch(String search) throws BestResultNotFound {
+    public Searchable bestFoundMatch (String search) throws BestResultNotFound {
         Searchable searchable = null;
         int maxCount = 0;
-        for (SearchEngine s : searchableItems) {
+        for (Searchable s : searchableItems) {
             int count = 0;
             int index = 0;
             if (s != null) {
@@ -50,7 +47,7 @@ public class SearchEngine {
                 while (indexString != -1) {
                     count++;
                     index = indexString + search.length();
-                    indexString = s.getSearchTerm().indexOf(search, index);
+                    indexString = s.searchTerm().indexOf(search, index);
                 }
             }
             if (count > maxCount) {
