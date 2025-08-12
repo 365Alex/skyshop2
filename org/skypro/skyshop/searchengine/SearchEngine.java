@@ -25,15 +25,13 @@ public class SearchEngine {
     }
 
     public List<Searchable> search(String term) {
-        Iterator<Searchable> iterator = searchableItems.iterator();
         List<Searchable> result = new LinkedList<>();
-        while (iterator.hasNext()){
-            if (iterator.next().searchTerm().contains(term)) {
-                Searchable s = (Searchable) iterator.next();
-                result.add(s);
-                count++;
+        for(Searchable searchable : searchableItems){
+            if (searchable !=null && searchable.searchTerm().contains(term));
+            result.add(searchable);
 
         }
+        return result;
     }
 
     public Searchable bestFoundMatch (String search) throws BestResultNotFound {

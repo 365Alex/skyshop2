@@ -24,7 +24,6 @@ public class App {
         SimpleProduct productTree = new SimpleProduct("молоко", 94);
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
-        productBasket.printProductBasket();
 
         List<Product> productBasketOne = new LinkedList<>();
         productBasketOne.add(cheese);
@@ -41,11 +40,19 @@ public class App {
         productBasket.printProductBasket();
         System.out.println(productBasket.deleteNameProduct("молоко"));
 
+        SearchEngine searchEngineOne = new SearchEngine();
+        searchEngineOne.add(cheese);
+        searchEngineOne.add(productFife);
+        searchEngineOne.add(productTree);
+        System.out.println(searchEngineOne.search("сыр"));
+
+
+
 
 
         System.out.println();
         System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
-        System.out.println(("Есть ли молоко в корзине? " + productBasket.hasProduct("молоко")));
+        System.out.println(("Есть ли сыр в корзине? " + productBasket.hasProduct("сыр")));
 
         productBasket.clear();
         productBasket.printProductBasket();
@@ -89,7 +96,7 @@ public class App {
         try {
             searchEngine.bestFoundMatch("хлеб");
         } catch (BestResultNotFound e) {
-            System.out.println("не найдено" + e.getMessage());
+            System.out.println("не найдено" + " " + e.getMessage());
         }
 
 
@@ -98,9 +105,7 @@ public class App {
 
             searchEngine.add(articleOne);
             searchEngine.add(articleTwo);
-
-
-
+        System.out.println(searchEngine.search("новинки"));
 
 
 
