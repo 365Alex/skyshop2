@@ -13,6 +13,7 @@ public class SearchEngine {
 
     public SearchEngine() {
         searchableItems = new LinkedList<>();
+
     }
 
 
