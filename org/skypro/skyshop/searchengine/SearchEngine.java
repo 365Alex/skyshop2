@@ -8,7 +8,6 @@ import java.util.List;
 
 public class SearchEngine {
     private final List<Searchable> searchableItems;
-    private int count = 0;
 
 
     public SearchEngine() {
@@ -18,18 +17,15 @@ public class SearchEngine {
 
 
     public void add(Searchable searchable) {
-        if (count < searchableItems.size()) {
-            count++;
-            searchableItems.set(count, searchable);
-        }
+        searchableItems.add(searchable);
     }
 
     public List<Searchable> search(String term) {
         List<Searchable> result = new LinkedList<>();
         for(Searchable searchable : searchableItems){
-            if (searchable !=null && searchable.searchTerm().contains(term));
-            result.add(searchable);
-
+            if (searchable !=null && searchable.searchTerm().contains(term)){
+                    result.add(searchable);
+            }
         }
         return result;
     }

@@ -8,7 +8,6 @@ import org.skypro.skyshop.searchengine.BestResultNotFound;
 import org.skypro.skyshop.searchengine.SearchEngine;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,6 +92,10 @@ public class App {
             SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(candies);
         searchEngine.add(tea);
+        searchEngine.add(coffee);
+
+
+
         try {
             searchEngine.bestFoundMatch("хлеб");
         } catch (BestResultNotFound e) {
@@ -103,9 +106,20 @@ public class App {
             Article articleOne = new Article("Новинки автомобилей", "Топ 5 автомобилей 2025");
             Article articleTwo = new Article("Рецепт вкусных блинчиков", "Топ 10 рецептов блинчиков");
 
+        List<Article> searchEnginesTwo = new LinkedList<>();
+        searchEnginesTwo.add(articleTwo);
+        searchEnginesTwo.add(articleOne);
+        System.out.println(searchEnginesTwo);
+
+        List<DiscountedProduct> searchOne = new LinkedList<>();
+        searchOne.add(candies);
+        searchOne.add(cheese);
+        System.out.println(searchOne);
+        searchOne.clear();
+
             searchEngine.add(articleOne);
             searchEngine.add(articleTwo);
-        System.out.println(searchEngine.search("новинки"));
+        System.out.println(searchEngine.search("Новинки"));
 
 
 
