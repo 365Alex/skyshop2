@@ -4,31 +4,46 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductBasket {
-    private final Product[] products;
+    private final List<Product> products;
     private int size;
 
-    public ProductBasket(int basket) {
-        products = new Product[basket];
+    public ProductBasket() {
+        this.products = new LinkedList<>();
         size = 0;
     }
 
-    public void addProduct(Product product) {
 
-        if (size < products.length) {
-            products[size++] = product;
-        } else  {
-            System.out.println("Корзина заполнена");
+    public void addProduct(Product product) {
+        if (product != null) {
+            size++;
+            products.add(product);
+        } else {
+            System.out.println("Нельзя добавить null продукт");
         }
     }
 
-
+    public List<Product> deleteNameProduct(String name){
+        List<Product> deleteProduct = new LinkedList<>();
+        Iterator iterator = products.iterator();
+        while (iterator.hasNext()){
+            Product product = (Product) iterator.next();
+            if (product.getName().equalsIgnoreCase(name)){
+                deleteProduct.add(product);
+                iterator.remove();
+            }
+        }
+        return deleteProduct;
+    }
 
     public int getTotalPrice(){
         int total = 0;
         for (int i = 0; i < size; i++) {
-            total += products[i].getPrice();
+            total += products.get(i).getPrice();
         }
         return total;
     }
@@ -42,12 +57,12 @@ public class ProductBasket {
                 return;
             }
         for (int i = 0; i < size; i++) {
-            System.out.println(products[i].toString());
+            System.out.println(products.get(i).toString());
         }
 
         int specialCount = 0;
                 for (int i = 0; i < size; i++) {
-            if (products[i].isSpecial()){
+            if (products.get(i).isSpecial()){
                 specialCount ++;
             }
         }
@@ -70,11 +85,11 @@ public class ProductBasket {
     }
 
     public void clear() {
-        for (int i = 0; i < products.length; i++) {
-            products[i] = null;
+        for (int i = 0; i < products.size(); i++) {
+            products.set(i, null);
         }
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] == null){
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i) == null){
                 size = 0;
             }
         }
