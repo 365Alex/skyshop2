@@ -1,35 +1,33 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 
 public class ProductBasket {
-    private final List<Product> products;
+    private final Map<String, List<Product>> productMap = new TreeMap<>();
     private int size;
 
-    public ProductBasket() {
-        this.products = new LinkedList<>();
-        size = 0;
+    public ProductBasket(){
+        this.size = 0;
     }
 
-
     public void addProduct(Product product) {
-        if (product != null) {
-            size++;
-            products.add(product);
+        List<Product> products;
+        if (!productMap.containsKey(product.getName())) {
+            products = new LinkedList<>();
+            productMap.put(product.getName(), products);
         } else {
-            System.out.println("Нельзя добавить null продукт");
+            products = productMap.get(product.getName());
         }
+        products.add(product);
+        size++;
     }
 
     public List<Product> deleteNameProduct(String name){
         List<Product> deleteProduct = new LinkedList<>();
-        Iterator iterator = products.iterator();
+        Iterator iterator = productMap.values().iterator();
         while (iterator.hasNext()){
             Product product = (Product) iterator.next();
             if (product.getName().equalsIgnoreCase(name)){
@@ -43,7 +41,7 @@ public class ProductBasket {
     public int getTotalPrice(){
         int total = 0;
         for (int i = 0; i < size; i++) {
-            total += products.get(i).getPrice();
+            total += productMap.values().getPrice();
         }
         return total;
     }
@@ -57,12 +55,12 @@ public class ProductBasket {
                 return;
             }
         for (int i = 0; i < size; i++) {
-            System.out.println(products.get(i).toString());
+            System.out.println(productMap.get(i).toString());
         }
 
         int specialCount = 0;
                 for (int i = 0; i < size; i++) {
-            if (products.get(i).isSpecial()){
+            if (productMap.values().isSpecial()){
                 specialCount ++;
             }
         }
@@ -76,8 +74,8 @@ public class ProductBasket {
 
 
     public boolean hasProduct(String name) {
-        for (Product product : products) {
-            if (product.getNameProduct().equalsIgnoreCase(name)) {
+        for (List<Product> products : productMap.values()) {
+            if (products.get(size).getNameProduct().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -85,13 +83,7 @@ public class ProductBasket {
     }
 
     public void clear() {
-        for (int i = 0; i < products.size(); i++) {
-            products.set(i, null);
-        }
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i) == null){
-                size = 0;
-            }
-        }
+        productMap.clear();
+        size = 0;
     }
 }
