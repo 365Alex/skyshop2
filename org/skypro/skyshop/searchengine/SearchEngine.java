@@ -2,29 +2,25 @@ package org.skypro.skyshop.searchengine;
 
 import org.skypro.skyshop.searchable.Searchable;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
-    private final List<Searchable> searchableItems;
+    private Map<Searchable, List<Searchable>> searchableItems = new TreeMap<>();
 
-
-    public SearchEngine() {
-        searchableItems = new LinkedList<>();
-
+    public SearchEngine(Map<Searchable, List<Searchable>> searchableItems) {
+        this.searchableItems = searchableItems;
     }
 
 
-    public void add(Searchable searchable) {
-        searchableItems.add(searchable);
+    public void get(Searchable searchable) {
+        searchableItems.get(searchable);
     }
 
-    public List<Searchable> search(String term) {
-        List<Searchable> result = new LinkedList<>();
-        for(Searchable searchable : searchableItems){
-            if (searchable !=null && searchable.searchTerm().contains(term)){
-                    result.add(searchable);
+    public Map<Searchable, List<Searchable>> search(String term) {
+       Map<Searchable, List<Searchable>> result = new TreeMap<>();
+        for(Map.Entry<Searchable, List<Searchable>> searchable : searchableItems) {
+            if (searchable != null && searchable.searchTerm().contains(term)) {
+                result.get(searchable);
             }
         }
         return result;
