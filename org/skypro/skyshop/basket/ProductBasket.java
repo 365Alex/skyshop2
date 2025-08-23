@@ -27,13 +27,18 @@ public class ProductBasket {
 
     public List<Product> deleteNameProduct(String name){
         List<Product> deleteProduct = new LinkedList<>();
-        Iterator iterator = productMap.values().iterator();
-        while (iterator.hasNext()){
-            Product product = (Product) iterator.next();
-            if (product.getName().equalsIgnoreCase(name)){
+        Iterator<Map.Entry<String, List<Product>>> deleteMap = productMap.entrySet().iterator();
+        while (deleteMap.hasNext()){
+            Map.Entry<String, List<Product>> prodMap = deleteMap.next();
+            Product product = (Product) prodMap.getValue();
+            if (product.getName().equals(name)){
+                System.out.println(product.getNameProduct());
                 deleteProduct.add(product);
-                iterator.remove();
+                deleteMap.remove();
             }
+        }
+        if (deleteProduct.isEmpty()){
+            System.out.printf("такого продукта нет ", name);
         }
         return deleteProduct;
     }
@@ -51,7 +56,7 @@ public class ProductBasket {
 
 
     public void printProductBasket(){
-        
+
             if (size == 0){
                 System.out.println("В корзине пусто");
                 return;

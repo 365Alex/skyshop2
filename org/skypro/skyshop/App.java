@@ -34,10 +34,10 @@ public class App {
         productBasket.addProduct(productFor);
         productBasket.addProduct(productTwo);
         productBasket.printProductBasket();
-//        System.out.println(productBasket.deleteNameProduct("молоко"));
-        System.out.println();
-        System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
-        System.out.println(("Есть ли сыр в корзине? " + productBasket.hasProduct("сыр")));
+        System.out.println(productBasket.deleteNameProduct("сыр"));
+//        System.out.println();
+//        System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
+//        System.out.println(("Есть ли сыр в корзине? " + productBasket.hasProduct("сыр")));
 
         productBasket.clear();
         productBasket.printProductBasket();
@@ -79,7 +79,7 @@ public class App {
         searchEngine.add(candies);
         searchEngine.add(tea);
         searchEngine.add(coffee);
-
+        System.out.println();
 
 
         try {
