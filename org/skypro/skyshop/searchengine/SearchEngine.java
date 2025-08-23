@@ -5,22 +5,24 @@ import org.skypro.skyshop.searchable.Searchable;
 import java.util.*;
 
 public class SearchEngine {
-    private Map<Searchable, List<Searchable>> searchableItems = new TreeMap<>();
+    private final List<Searchable> searchableItems;
 
-    public SearchEngine(Map<Searchable, List<Searchable>> searchableItems) {
-        this.searchableItems = searchableItems;
+
+    public SearchEngine() {
+        searchableItems = new LinkedList<>();
+
     }
 
 
-    public void get(Searchable searchable) {
-        searchableItems.get(searchable);
+    public void add(Searchable searchable) {
+        searchableItems.add(searchable);
     }
 
-    public Map<Searchable, List<Searchable>> search(String term) {
-       Map<Searchable, List<Searchable>> result = new TreeMap<>();
-        for(Map.Entry<Searchable, List<Searchable>> searchable : searchableItems) {
-            if (searchable != null && searchable.searchTerm().contains(term)) {
-                result.get(searchable);
+    public Map<String, List<Searchable>> search(String term) {
+        Map<String, List<Searchable>> result = new TreeMap<>();
+        for(Searchable searchable : searchableItems){
+            if (searchable !=null && searchable.searchTerm().contains(term)){
+                    result.put(searchable.getName(), searchableItems);
             }
         }
         return result;

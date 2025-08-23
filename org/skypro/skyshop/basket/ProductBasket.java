@@ -40,8 +40,10 @@ public class ProductBasket {
 
     public int getTotalPrice(){
         int total = 0;
-        for (int i = 0; i < size; i++) {
-            total += productMap.values().getPrice();
+        for (List<Product> value : productMap.values()) {
+            for (Product product : value) {
+                total += product.getPrice();
+            }
         }
         return total;
     }
@@ -54,14 +56,18 @@ public class ProductBasket {
                 System.out.println("В корзине пусто");
                 return;
             }
-        for (int i = 0; i < size; i++) {
-            System.out.println(productMap.get(i).toString());
+        for (List<Product> value : productMap.values()) {
+            for (Product product : value) {
+                System.out.println(product.toString());
+            }
         }
 
         int specialCount = 0;
-                for (int i = 0; i < size; i++) {
-            if (productMap.values().isSpecial()){
-                specialCount ++;
+        for (List<Product> value : productMap.values()) {
+            for (Product product : value) {
+            if (product.isSpecial()) {
+                specialCount++;
+            }
             }
         }
 

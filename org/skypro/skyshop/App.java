@@ -8,8 +8,7 @@ import org.skypro.skyshop.searchengine.BestResultNotFound;
 import org.skypro.skyshop.searchengine.SearchEngine;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class App {
@@ -24,31 +23,18 @@ public class App {
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
 
-        List<Product> productBasketOne = new LinkedList<>();
-        productBasketOne.add(cheese);
-        productBasketOne.add(productFife);
-        productBasketOne.add(productTwo);
-        productBasketOne.add(productFor);
-        productBasketOne.add(productTree);
-        System.out.println(productBasketOne);
-        System.out.println(productBasketOne.get(3));
+        Map<Product, Product> basketOne = new HashMap<>();
+        basketOne.put(cheese, productTwo);
+        basketOne.put(productTree, productFor);
+        System.out.println(basketOne);
 
         productBasket.addProduct(cheese);
         productBasket.addProduct(productFife);
         productBasket.addProduct(productTree);
+        productBasket.addProduct(productFor);
+        productBasket.addProduct(productTwo);
         productBasket.printProductBasket();
-        System.out.println(productBasket.deleteNameProduct("молоко"));
-
-        SearchEngine searchEngineOne = new SearchEngine();
-        searchEngineOne.add(cheese);
-        searchEngineOne.add(productFife);
-        searchEngineOne.add(productTree);
-        System.out.println(searchEngineOne.search("сыр"));
-
-
-
-
-
+//        System.out.println(productBasket.deleteNameProduct("молоко"));
         System.out.println();
         System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
         System.out.println(("Есть ли сыр в корзине? " + productBasket.hasProduct("сыр")));
@@ -89,7 +75,7 @@ public class App {
 
 
 
-            SearchEngine searchEngine = new SearchEngine();
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(candies);
         searchEngine.add(tea);
         searchEngine.add(coffee);
@@ -106,20 +92,6 @@ public class App {
             Article articleOne = new Article("Новинки автомобилей", "Топ 5 автомобилей 2025");
             Article articleTwo = new Article("Рецепт вкусных блинчиков", "Топ 10 рецептов блинчиков");
 
-        List<Article> searchEnginesTwo = new LinkedList<>();
-        searchEnginesTwo.add(articleTwo);
-        searchEnginesTwo.add(articleOne);
-        System.out.println(searchEnginesTwo);
-
-        List<DiscountedProduct> searchOne = new LinkedList<>();
-        searchOne.add(candies);
-        searchOne.add(cheese);
-        System.out.println(searchOne);
-        searchOne.clear();
-
-            searchEngine.add(articleOne);
-            searchEngine.add(articleTwo);
-        System.out.println(searchEngine.search("Новинки"));
 
 
 
