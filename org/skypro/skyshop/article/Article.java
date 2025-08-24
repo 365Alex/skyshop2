@@ -13,6 +13,7 @@ public class Article implements Searchable {
     }
 
 
+
     public String getTitle(){
         return title;
     }
@@ -22,7 +23,7 @@ public class Article implements Searchable {
     }
 
     public String toString(){
-        return "Название статьи: " + title + "\n" + " Текст статьи: " + text;
+        return "Название статьи: " + title + "\n" + " Текст статьи: " + text + "\n";
     }
 
 

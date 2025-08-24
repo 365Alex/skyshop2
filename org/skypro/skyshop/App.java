@@ -3,13 +3,12 @@ import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.discountedproduct.DiscountedProduct;
 import org.skypro.skyshop.fixPriceproduct.FixPriceProduct;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchengine.BestResultNotFound;
 import org.skypro.skyshop.searchengine.SearchEngine;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
-import java.nio.file.attribute.UserDefinedFileAttributeView;
-import java.util.Arrays;
-
+import java.util.*;
 
 
 public class App {
@@ -17,21 +16,26 @@ public class App {
 
 
         System.out.println("Корзина №1");
-        ProductBasket productBasket = new ProductBasket(5);
+        ProductBasket productBasket = new ProductBasket();
         DiscountedProduct cheese = new DiscountedProduct("сыр", 85, 10);
         FixPriceProduct productTwo = new FixPriceProduct("Печенье");
         SimpleProduct productTree = new SimpleProduct("молоко", 94);
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
 
+        Map<Product, Product> basketOne = new HashMap<>();
+        basketOne.put(cheese, productTwo);
+        basketOne.put(productTree, productFor);
+        System.out.println(basketOne);
+
+
         productBasket.addProduct(cheese);
-        productBasket.addProduct(productTwo);
+        productBasket.addProduct(productFife);
         productBasket.addProduct(productTree);
         productBasket.addProduct(productFor);
-        productBasket.addProduct(productFife);
+        productBasket.addProduct(productTwo);
         productBasket.printProductBasket();
-
-
+        System.out.println(productBasket.deleteNameProduct("сыр"));
         System.out.println();
         System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
         System.out.println(("Есть ли молоко в корзине? " + productBasket.hasProduct("молоко")));
@@ -42,7 +46,7 @@ public class App {
         System.out.println();
 
         System.out.println("Корзина №2");
-        ProductBasket productBasketOne = new ProductBasket(5);
+        ProductBasket productBasketTwo = new ProductBasket();
         SimpleProduct correct = null;
 
         try {
@@ -62,23 +66,29 @@ public class App {
         if (tea != null){
             System.out.println("Продукт успешно создан: " + tea.getName());
         }
-            DiscountedProduct candies = new DiscountedProduct("чай с бергамотом", 89, 10);
+            DiscountedProduct candies = new DiscountedProduct("конфеты", 109, 10);
             DiscountedProduct coffee = new DiscountedProduct("кофе", 198, 10);
 
-            productBasketOne.addProduct(tea);
-            productBasketOne.addProduct(candies);
-            productBasketOne.addProduct(coffee);
-            productBasketOne.printProductBasket();
+            productBasketTwo.addProduct(tea);
+            productBasketTwo.addProduct(candies);
+            productBasketTwo.addProduct(coffee);
+            productBasketTwo.printProductBasket();
 
 
 
-            SearchEngine searchEngine = new SearchEngine(5);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(candies);
         searchEngine.add(tea);
+        searchEngine.add(coffee);
+        System.out.println();
+        System.out.println(searchEngine.search("чай"));
+
+
+
         try {
             searchEngine.bestFoundMatch("хлеб");
         } catch (BestResultNotFound e) {
-            System.out.println("не найдено" + e.getMessage());
+            System.out.println("не найдено" + " " + e.getMessage());
         }
 
 
@@ -87,8 +97,9 @@ public class App {
 
             searchEngine.add(articleOne);
             searchEngine.add(articleTwo);
-
-            System.out.println(Arrays.toString(searchEngine.search("Новинки")));
+        System.out.println(searchEngine.search("Новинки"));
+            Map<Article, Article> article = new HashMap<>();
+            article.put(articleOne, articleTwo);
 
 
 
