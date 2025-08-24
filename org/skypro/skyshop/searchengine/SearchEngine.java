@@ -1,5 +1,6 @@
 package org.skypro.skyshop.searchengine;
 
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchable.Searchable;
 
 import java.util.*;
@@ -18,11 +19,11 @@ public class SearchEngine {
         searchableItems.add(searchable);
     }
 
-    public Map<String, List<Searchable>> search(String term) {
-        Map<String, List<Searchable>> result = new TreeMap<>();
-        for(Searchable searchable : searchableItems){
-            if (searchable !=null && searchable.searchTerm().contains(term)){
-                    result.put(searchable.getName(), searchableItems);
+    public Map<String, Searchable> search(String term) {
+        Map<String, Searchable> result = new TreeMap<>();
+        for (Searchable searchable : searchableItems){
+            if (searchable != null && searchable.searchTerm().contains(term)){
+                result.put(searchable.searchTerm(), searchable);
             }
         }
         return result;

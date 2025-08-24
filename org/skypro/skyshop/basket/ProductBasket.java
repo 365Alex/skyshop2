@@ -25,23 +25,13 @@ public class ProductBasket {
         size++;
     }
 
-    public List<Product> deleteNameProduct(String name){
-        List<Product> deleteProduct = new LinkedList<>();
-        Iterator<Map.Entry<String, List<Product>>> deleteMap = productMap.entrySet().iterator();
-        while (deleteMap.hasNext()){
-            Map.Entry<String, List<Product>> prodMap = deleteMap.next();
-            Product product = (Product) prodMap.getValue();
-            if (product.getName().equals(name)){
-                System.out.println(product.getNameProduct());
-                deleteProduct.add(product);
-                deleteMap.remove();
-            }
-        }
-        if (deleteProduct.isEmpty()){
-            System.out.printf("такого продукта нет ", name);
-        }
-        return deleteProduct;
+    public String deleteNameProduct(String name){
+        productMap.remove(name);
+        return "удалённый товар: "+name;
+
     }
+
+
 
     public int getTotalPrice(){
         int total = 0;
@@ -85,12 +75,7 @@ public class ProductBasket {
 
 
     public boolean hasProduct(String name) {
-        for (List<Product> products : productMap.values()) {
-            if (products.get(size).getNameProduct().equalsIgnoreCase(name)) {
-                return true;
-            }
-        }
-        return false;
+        return productMap.containsKey(name);
     }
 
     public void clear() {

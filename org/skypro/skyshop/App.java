@@ -35,9 +35,9 @@ public class App {
         productBasket.addProduct(productTwo);
         productBasket.printProductBasket();
         System.out.println(productBasket.deleteNameProduct("сыр"));
-//        System.out.println();
-//        System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
-//        System.out.println(("Есть ли сыр в корзине? " + productBasket.hasProduct("сыр")));
+        System.out.println();
+        System.out.println(("Есть ли огурцы в корзине? " + productBasket.hasProduct("огурцы")));
+        System.out.println(("Есть ли молоко в корзине? " + productBasket.hasProduct("молоко")));
 
         productBasket.clear();
         productBasket.printProductBasket();
@@ -65,7 +65,7 @@ public class App {
         if (tea != null){
             System.out.println("Продукт успешно создан: " + tea.getName());
         }
-            DiscountedProduct candies = new DiscountedProduct("чай с бергамотом", 89, 10);
+            DiscountedProduct candies = new DiscountedProduct("конфеты", 109, 10);
             DiscountedProduct coffee = new DiscountedProduct("кофе", 198, 10);
 
             productBasketTwo.addProduct(tea);
@@ -80,6 +80,8 @@ public class App {
         searchEngine.add(tea);
         searchEngine.add(coffee);
         System.out.println();
+        System.out.println(searchEngine.search("чай"));
+
 
 
         try {
@@ -91,6 +93,13 @@ public class App {
 
             Article articleOne = new Article("Новинки автомобилей", "Топ 5 автомобилей 2025");
             Article articleTwo = new Article("Рецепт вкусных блинчиков", "Топ 10 рецептов блинчиков");
+
+            searchEngine.add(articleOne);
+            searchEngine.add(articleTwo);
+        System.out.println(searchEngine.search("Новинки"));
+            Map<Article, Article> article = new HashMap<>();
+            article.put(articleOne, articleTwo);
+
 
 
 
