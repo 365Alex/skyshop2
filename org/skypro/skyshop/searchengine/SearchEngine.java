@@ -25,6 +25,7 @@ public class SearchEngine {
             if (searchable != null && searchable.searchTerm().contains(term)){
                 result.put(searchable.searchTerm(), searchable);
             }
+
         }
         return result;
     }

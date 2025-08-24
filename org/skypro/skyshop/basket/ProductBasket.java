@@ -28,7 +28,6 @@ public class ProductBasket {
     public String deleteNameProduct(String name){
         productMap.remove(name);
         return "удалённый товар: "+name;
-
     }
 
 
