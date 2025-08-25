@@ -28,6 +28,11 @@ public class App {
         basketOne.put(productTree, productFor);
         System.out.println(basketOne);
 
+        Set<Product> productBasOne = new HashSet<>();
+        productBasOne.add(cheese);
+        productBasOne.add(productFife);
+        productBasOne.add(productTree);
+        System.out.println(productBasOne);
 
         productBasket.addProduct(cheese);
         productBasket.addProduct(productFife);

@@ -6,11 +6,11 @@ import org.skypro.skyshop.searchable.Searchable;
 import java.util.*;
 
 public class SearchEngine {
-    private final List<Searchable> searchableItems;
+    private final Set<Searchable> searchableItems;
 
 
     public SearchEngine() {
-        searchableItems = new LinkedList<>();
+        searchableItems = new HashSet<>();
 
     }
 
@@ -19,11 +19,11 @@ public class SearchEngine {
         searchableItems.add(searchable);
     }
 
-    public Map<String, Searchable> search(String term) {
-        Map<String, Searchable> result = new TreeMap<>();
+    public Set<Searchable> search(String term) {
+        Set<Searchable> result = new TreeSet<>(new SearchableComparator());
         for (Searchable searchable : searchableItems){
             if (searchable != null && searchable.searchTerm().contains(term)){
-                result.put(searchable.searchTerm(), searchable);
+                result.add(searchable);
             }
 
         }

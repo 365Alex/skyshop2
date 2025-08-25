@@ -33,10 +33,12 @@ public class DiscountedProduct extends Product {
                 " скидка: " + this.percent + "%" + " цена со скидкой: " + this.getPrice() + " руб." + "\n";
     }
 
+
     @Override
     public boolean isSpecial(){
         return true;
     }
+
 
 
 }

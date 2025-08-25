@@ -42,4 +42,5 @@ public class Article implements Searchable {
         return title;
     }
 
+
 }
