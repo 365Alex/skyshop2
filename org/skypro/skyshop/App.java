@@ -6,6 +6,7 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchengine.BestResultNotFound;
 import org.skypro.skyshop.searchengine.SearchEngine;
+import org.skypro.skyshop.searchengine.SearchableComparator;
 import org.skypro.skyshop.simpleproduct.SimpleProduct;
 
 import java.util.*;
@@ -15,25 +16,27 @@ public class App {
     public static void main(String[] args) {
 
 
-        System.out.println("Корзина №1");
+
         ProductBasket productBasket = new ProductBasket();
         DiscountedProduct cheese = new DiscountedProduct("сыр", 85, 10);
         FixPriceProduct productTwo = new FixPriceProduct("Печенье");
         SimpleProduct productTree = new SimpleProduct("молоко", 94);
         DiscountedProduct productFor = new DiscountedProduct("колбаса", 189, 15);
         SimpleProduct productFife = new SimpleProduct("макароны", 58);
-
+        System.out.println("Map");
         Map<Product, Product> basketOne = new HashMap<>();
         basketOne.put(cheese, productTwo);
         basketOne.put(productTree, productFor);
         System.out.println(basketOne);
-
+        System.out.println("Set");
         Set<Product> productBasOne = new HashSet<>();
         productBasOne.add(cheese);
         productBasOne.add(productFife);
         productBasOne.add(productTree);
+        productBasOne.add(productFor);
+        productBasOne.add(productTwo);
         System.out.println(productBasOne);
-
+        System.out.println("Корзина №1");
         productBasket.addProduct(cheese);
         productBasket.addProduct(productFife);
         productBasket.addProduct(productTree);
@@ -105,6 +108,11 @@ public class App {
         System.out.println(searchEngine.search("Новинки"));
             Map<Article, Article> article = new HashMap<>();
             article.put(articleOne, articleTwo);
+
+            Set<Article> artOne = new TreeSet<>(new SearchableComparator());
+            artOne.add(articleTwo);
+            artOne.add(articleOne);
+        System.out.println(artOne);
 
 
 
