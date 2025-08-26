@@ -36,6 +36,8 @@ public class App {
         productBasOne.add(productFor);
         productBasOne.add(productTwo);
         System.out.println(productBasOne);
+        System.out.println(productBasOne.equals(productTwo));
+        System.out.println(productBasOne.hashCode());
         System.out.println("Корзина №1");
         productBasket.addProduct(cheese);
         productBasket.addProduct(productFife);
@@ -113,6 +115,8 @@ public class App {
             artOne.add(articleTwo);
             artOne.add(articleOne);
         System.out.println(artOne);
+        System.out.println(artOne.equals(productTwo));
+        System.out.println(artOne.hashCode());
 
 
 
