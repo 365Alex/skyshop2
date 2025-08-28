@@ -3,6 +3,7 @@ package org.skypro.skyshop.product;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.searchable.Searchable;
 
+import java.util.List;
 import java.util.Objects;
 
 public abstract class  Product implements Searchable {
@@ -23,10 +24,6 @@ public abstract class  Product implements Searchable {
     public abstract int getPrice();
 
     public abstract String toString();
-
-    public boolean isSpecial(){
-        return false;
-    }
 
     @Override
     public String searchTerm(){
@@ -60,4 +57,5 @@ public abstract class  Product implements Searchable {
         return Objects.hash(name);
     }
 
+    public abstract boolean isSpecial();
 }

@@ -24,6 +24,7 @@ public class SimpleProduct extends Product {
         return "Продукт: " + this.getNameProduct() + " цена: " + this.price + " руб." + "\n";
     }
 
+    @Override
     public boolean isSpecial(){
         return false;
     }
