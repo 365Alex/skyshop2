@@ -10,7 +10,6 @@ public class SimpleProduct extends Product {
         this.price = price;
         if (price <= 0){
             throw new IllegalArgumentException("неверная цена продукта");
-
         }
     }
 
@@ -22,9 +21,10 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString(){
-        return "Продукт: " + this.getNameProduct() + " цена: " + this.price + " руб.";
+        return "Продукт: " + this.getNameProduct() + " цена: " + this.price + " руб." + "\n";
     }
 
+    @Override
     public boolean isSpecial(){
         return false;
     }
